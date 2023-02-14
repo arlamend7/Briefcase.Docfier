@@ -1,0 +1,33 @@
+name: Github nuget (patch version)
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+    
+jobs:
+  pack-push:
+    env:
+      SOURCE: https://nuget.pkg.github.com/${{ github.actor }}/index.json
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET 6
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.*
+
+    - name: Configurar nuget source
+      run: dotnet nuget add source --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github ${{ env.SOURCE }}
+      
+    - name: Build
+      run: dotnet build
+      
+    - name: Geração do package
+      run: dotnet pack --version-suffix preview
+  
+    - name: Push no NuGet
+      run: dotnet nuget push **/**/**/*.nupkg --api-key ${{secrets.GITHUB_TOKEN }} --source "github" --skip-duplicate

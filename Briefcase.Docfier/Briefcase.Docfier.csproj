@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<Title>$(AssemblyName)</Title>
+		<Company>arlamend7</Company>
+		<VersionPrefix>0.0.1</VersionPrefix>
+		<PackageProjectUrl>https://github.com/arlamend7/Briefcase.System</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/arlamend7/Briefcase.System</RepositoryUrl>
+	</PropertyGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Briefcase.System\Briefcase.System\Briefcase.System.csproj" />
+	</ItemGroup>
+	<!--<Target Name="Configurator" AfterTargets="Build">
+		<Exec command="..\\..\\Applications\\Briefcase\\bin\\Debug\\net6.0\\Briefcase.Configurator.exe" ContinueOnError="true" />
+	</Target>-->
+</Project>
